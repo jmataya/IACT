@@ -14,7 +14,7 @@ $err = isset($_GET['err']) ? $_GET['err'] : '0';
 ?>
 <html>
     <head>
-        <link href="style/main.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="Style/main.css" rel="stylesheet" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin" />
         <title>IACT | Icarus</title>
     </head>
