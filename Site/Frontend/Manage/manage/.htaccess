@@ -1,0 +1,5 @@
+authtype basic
+authgroupfile /dev/null
+authuserfile /home/content/75/6692675/htconfig/.htpassword.ghtpassword
+authname "Secure Area"
+require user iact
