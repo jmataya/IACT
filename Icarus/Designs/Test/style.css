@@ -1,0 +1,87 @@
+body {
+    background: url('background.jpg');
+}
+
+#page {
+    width: 1000px;
+    height: 100%;
+    margin: -21px auto;
+    background: url('page-border-right.png');
+    background-repeat: repeat-y;
+    background-position: top right;
+    padding-right: 64px;
+}
+
+#container {
+    height: 100%;
+    background: url('page-border-left.png');
+    background-repeat: repeat-y;
+    margin-left: -64px;
+    padding-left: 64px;
+}
+
+#content {
+    height: 100%;
+    width: 996px;
+    margin-left: 0px;
+    background: #b3b3b3 url('page-border-top.jpg') top left;
+    background-repeat: repeat-x;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+}
+
+#header {
+    margin-top: 20px;
+    margin-left: -1px;
+    height: 211px;
+    width: 1000px;
+    background: url('header.png');
+}
+
+#post {
+    width: 900px;
+    margin-left: -10px;
+    margin-top: 5px;
+    //background: url('post-corner-top-left.png') top left;
+//    background-repeat: no-repeat;
+}
+
+#post-top {
+    background: url('post-top.png') top left;
+    background-repeat: repeat-x;
+    margin-top: -10px;
+    padding-top: 15px;
+    margin-left: 0px;
+}
+
+/*#post-top-right {
+    background: url('post-corner-top-right.png') top right;
+    background-repeat: no-repeat;
+    margin-right: -35px;
+    margin-top: -15px;
+    padding-top: 15px;
+}*/
+
+#post-right {
+    //background: url('post-corner-right.png') top right;
+//    background-repeat: repeat-y;
+    margin-top: -9px;
+    margin-right: -11px;
+}
+
+/*#post-bottom-right {
+    background: url('post-corner-bottom-right.png') bottom right;
+    background-repeat: no-repeat;
+    padding-bottom: 22px;
+    margin-right: -9px;
+    padding-right: 10px;
+}*/
+
+#post-bottom {
+    background: url('post-bottom.png') bottom left;
+    background-repeat: repeat-x;
+    margin-bottom: -36px;
+    padding-bottom: 10px;
+    margin-left: -55px;
+    margin-right: -85px;
+}
