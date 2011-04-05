@@ -9,7 +9,6 @@
 define('PUN_ROOT', dirname(__FILE__).'/');
 require PUN_ROOT.'include/common.php';
 
-
 if ($pun_user['g_read_board'] == '0')
 	message($lang_common['No view']);
 
@@ -201,6 +200,14 @@ require PUN_ROOT.'header.php';
 	</div>
 </div>
 
+<!-- This is where Jeff starts to get different. :) -->
+                <div id="post">
+                    <div id="post-top">
+                        <div id="post-bottom">
+                            <div id="post-right">
+                                <div id="post-left">
+                                    <div id="post-content">       
+
 <?php
 
 
@@ -255,7 +262,7 @@ while ($cur_post = $db->fetch_assoc($result))
 		}
 
 		// We only show location, register date, post count and the contact links if "Show user info" is enabled
-		if ($pun_config['o_show_user_info'] == '1')
+		if ($pun_config['o_show_user_info'] == '0')
 		{
 			if ($cur_post['location'] != '')
 			{
@@ -267,8 +274,8 @@ while ($cur_post = $db->fetch_assoc($result))
 
 			$user_info[] = '<dd><span>'.$lang_topic['Registered'].' '.format_time($cur_post['registered'], true).'</span></dd>';
 
-			if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
-				$user_info[] = '<dd><span>'.$lang_topic['Posts'].' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+			//if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
+			//	$user_info[] = '<dd><span>'.$lang_topic['Posts'].' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 
 			// Now let's deal with the contact links (Email and URL)
 			if ((($cur_post['email_setting'] == '0' && !$pun_user['is_guest']) || $pun_user['is_admmod']) && $pun_user['g_send_email'] == '1')
@@ -358,25 +365,27 @@ while ($cur_post = $db->fetch_assoc($result))
 				<div class="postleft">
 					<dl>
 						<dt><strong><?php echo $username ?></strong></dt>
-						<dd class="usertitle"><strong><?php echo $user_title ?></strong></dd>
+						<!--<dd class="usertitle"><strong><?php echo $user_title ?></strong></dd>-->
 <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
 <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
 <?php if (count($user_contacts)) echo "\t\t\t\t\t\t".'<dd class="usercontacts">'.implode(' ', $user_contacts).'</dd>'."\n"; ?>
 					</dl>
 				</div>
-				<div class="postright">
-					<h3><?php if ($cur_post['id'] != $cur_topic['first_post_id']) echo $lang_topic['Re'].' '; ?><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></h3>
-					<div class="postmsg">
-						<?php echo $cur_post['message']."\n" ?>
-<?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang_topic['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
-					</div>
-<?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>
-				</div>
+                     
+                                        <div class="postright">
+					                        <h3><?php if ($cur_post['id'] != $cur_topic['first_post_id']) echo $lang_topic['Re'].' '; ?><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></h3>
+					                        <div class="postmsg">
+						                        <?php echo $cur_post['message']."\n" ?>
+                                                <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang_topic['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
+					                        </div>
+                                            <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>
+				                        </div>
 			</div>
 		</div>
 		<div class="inbox">
-			<div class="postfoot clearb">
-				<div class="postfootleft"><?php if ($cur_post['poster_id'] > 1) echo '<p>'.$is_online.'</p>'; ?></div>
+            <div class="postfoot clearb">
+                <!-- TODO: Possibly get rid of this. -->
+                <div class="postfootleft"><?php /* if ($cur_post['poster_id'] > 1) echo '<p>'.$is_online.'</p>';*/ ?></div>
 <?php if (count($post_actions)) echo "\t\t\t\t".'<div class="postfootright">'."\n\t\t\t\t\t".'<ul>'."\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t".'</ul>'."\n\t\t\t\t".'</div>'."\n" ?>
 			</div>
 		</div>
@@ -388,6 +397,12 @@ while ($cur_post = $db->fetch_assoc($result))
 }
 
 ?>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 <div class="postlinksb">
 	<div class="inbox crumbsplus">
 		<div class="pagepost">

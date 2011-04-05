@@ -45,6 +45,11 @@ define('PUN_ALLOW_INDEX', 1);
 define('PUN_ACTIVE_PAGE', 'index');
 require PUN_ROOT.'header.php';
 
+// Display the header
+?>
+<div id="main">
+<?php
+
 // Print the categories and forums
 $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.redirect_url, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
@@ -64,20 +69,28 @@ while ($cur_forum = $db->fetch_assoc($result))
 		$forum_count = 0;
 
 ?>
-<div id="idx<?php echo $cat_count ?>" class="blocktable">
-	<h2><span><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang_common['Forum'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang_index['Topics'] ?></th>
-					<th class="tc3" scope="col"><?php echo $lang_common['Posts'] ?></th>
-					<th class="tcr" scope="col"><?php echo $lang_common['Last post'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+    <div id="post">
+        <div id="post-top">
+            <div id="post-bottom">
+                <div id="post-right">
+                    <div id="post-left">
+                        <div id="post-content">
+                            <h1 id="post-title">
+                                <?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?>
+                            </h1>
+                            <p>
+                                Each corner is a representation of how IACT views collaboration. 
+                                They are places for learning, generating ideas, sharing information, 
+                                providing feedback, and meeting new people. 
+                            </p>
+                            <p>Each corner has a different theme, so dive on in!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <?php
 
 		$cur_category = $cur_forum['cid'];
@@ -115,10 +128,12 @@ while ($cur_forum = $db->fetch_assoc($result))
 	}
 	else
 	{
-		$forum_field = '<h3><a href="viewforum.php?id='.$cur_forum['fid'].'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '').'</h3>';
+		$forum_field = '<h1><a href="viewforum.php?id='.$cur_forum['fid'].'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '').'</h1>';
 		$num_topics = $cur_forum['num_topics'];
 		$num_posts = $cur_forum['num_posts'];
-	}
+    }
+
+    $forum_link = '<a href="viewforum.php?id='.$cur_forum['fid'].'">Dive In!</a>';
 
 	if ($cur_forum['forum_desc'] != '')
 		$forum_field .= "\n\t\t\t\t\t\t\t\t".'<div class="forumdesc">'.$cur_forum['forum_desc'].'</div>';
@@ -148,112 +163,26 @@ while ($cur_forum = $db->fetch_assoc($result))
 	}
 
 ?>
-				<tr class="<?php echo $item_status ?>">
-					<td class="tcl">
-						<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($forum_count) ?></div></div>
-						<div class="tclcon">
-							<div>
-								<?php echo $forum_field."\n".$moderators ?>
-							</div>
-						</div>
-					</td>
-					<td class="tc2"><?php echo forum_number_format($num_topics) ?></td>
-					<td class="tc3"><?php echo forum_number_format($num_posts) ?></td>
-					<td class="tcr"><?php echo $last_post ?></td>
-				</tr>
+    <div id="post">
+        <div id="post-top">
+            <div id="post-bottom">
+                <div id="post-right">           
+                    <div id="post-left">
+                        <div id="post-content">
+                            <?php echo $forum_field ?>
+                            <p><?php echo $forum_link ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php
 
 }
-
-// Did we output any categories and forums?
-if ($cur_category > 0)
-	echo "\t\t\t".'</tbody>'."\n\t\t\t".'</table>'."\n\t\t".'</div>'."\n\t".'</div>'."\n".'</div>'."\n\n";
-else
-	echo '<div id="idx0" class="block"><div class="box"><div class="inbox"><p>'.$lang_index['Empty board'].'</p></div></div></div>';
-
-
-// Collect some statistics from the database
-$result = $db->query('SELECT COUNT(id)-1 FROM '.$db->prefix.'users WHERE group_id!='.PUN_UNVERIFIED) or error('Unable to fetch total user count', __FILE__, __LINE__, $db->error());
-$stats['total_users'] = $db->result($result);
-
-$result = $db->query('SELECT id, username FROM '.$db->prefix.'users WHERE group_id!='.PUN_UNVERIFIED.' ORDER BY registered DESC LIMIT 1') or error('Unable to fetch newest registered user', __FILE__, __LINE__, $db->error());
-$stats['last_user'] = $db->fetch_assoc($result);
-
-$result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
-list($stats['total_topics'], $stats['total_posts']) = $db->fetch_row($result);
-
-if ($pun_user['g_view_users'] == '1')
-	$stats['newest_user'] = '<a href="profile.php?id='.$stats['last_user']['id'].'">'.pun_htmlspecialchars($stats['last_user']['username']).'</a>';
-else
-	$stats['newest_user'] = pun_htmlspecialchars($stats['last_user']['username']);
-
-if (!empty($forum_actions))
-{
-
 ?>
-<div class="linksb">
-	<div class="inbox crumbsplus">
-		<p class="subscribelink clearb"><?php echo implode(' - ', $forum_actions); ?></p>
-	</div>
 </div>
-<?php
 
-}
-
-?>
-<div id="brdstats" class="block">
-	<h2><span><?php echo $lang_index['Board info'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<dl class="conr">
-				<dt><strong><?php echo $lang_index['Board stats'] ?></strong></dt>
-				<dd><span><?php printf($lang_index['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></dd>
-				<dd><span><?php printf($lang_index['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></dd>
-				<dd><span><?php printf($lang_index['No of posts'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></dd>
-			</dl>
-			<dl class="conl">
-				<dt><strong><?php echo $lang_index['User info'] ?></strong></dt>
-				<dd><span><?php printf($lang_index['Newest user'], $stats['newest_user']) ?></span></dd>
-<?php
-
-if ($pun_config['o_users_online'] == '1')
-{
-	// Fetch users online info and generate strings for output
-	$num_guests = 0;
-	$users = array();
-	$result = $db->query('SELECT user_id, ident FROM '.$db->prefix.'online WHERE idle=0 ORDER BY ident', true) or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
-
-	while ($pun_user_online = $db->fetch_assoc($result))
-	{
-		if ($pun_user_online['user_id'] > 1)
-		{
-			if ($pun_user['g_view_users'] == '1')
-				$users[] = "\n\t\t\t\t".'<dd><a href="profile.php?id='.$pun_user_online['user_id'].'">'.pun_htmlspecialchars($pun_user_online['ident']).'</a>';
-			else
-				$users[] = "\n\t\t\t\t".'<dd>'.pun_htmlspecialchars($pun_user_online['ident']);
-		}
-		else
-			++$num_guests;
-	}
-
-	$num_users = count($users);
-	echo "\t\t\t\t".'<dd><span>'.sprintf($lang_index['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></dd>'."\n\t\t\t\t".'<dd><span>'.sprintf($lang_index['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></dd>'."\n\t\t\t".'</dl>'."\n";
-
-
-	if ($num_users > 0)
-		echo "\t\t\t".'<dl id="onlinelist" class="clearb">'."\n\t\t\t\t".'<dt><strong>'.$lang_index['Online'].' </strong></dt>'."\t\t\t\t".implode(',</dd> ', $users).'</dd>'."\n\t\t\t".'</dl>'."\n";
-	else
-		echo "\t\t\t".'<div class="clearer"></div>'."\n";
-
-}
-else
-	echo "\t\t\t".'</dl>'."\n\t\t\t".'<div class="clearer"></div>'."\n";
-
-
-?>
-		</div>
-	</div>
-</div>
 <?php
 
 $footer_style = 'index';
