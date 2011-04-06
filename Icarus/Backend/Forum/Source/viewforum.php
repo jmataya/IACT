@@ -125,33 +125,18 @@ require PUN_ROOT.'header.php';
 ?>
 <div class="linkst">
 	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></a></li>
-		</ul>
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
-<?php echo $post_link ?>
-		</div>
+		<a href="index.php"><?php echo $lang_common['Index'] ?></a> | <a href="viewforum.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></a>	
 		<div class="clearer"></div>
 	</div>
 </div>
-
+<div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
+<h1><span><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></span></h1>
+</div></div></div></div></div></div>
+<div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 <div id="vf" class="blocktable">
-	<h2><span><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></span></h2>
-	<div class="box">
+    	<div class="box">
 		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang_common['Topic'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang_common['Replies'] ?></th>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="tc3" scope="col"><?php echo $lang_forum['Views'] ?></th>
-<?php endif; ?>					<th class="tcr" scope="col"><?php echo $lang_common['Last post'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
-<?php
+			<?php
 
 // Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 $result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$pun_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
@@ -189,7 +174,7 @@ if ($db->num_rows($result))
 		$icon_type = 'icon';
 
 		if ($cur_topic['moved_to'] == null)
-			$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_topic['last_poster']).'</span>';
+			$last_post = '<h3><a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a></h3><br /><span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_topic['last_poster']).'</span>';
 		else
 			$last_post = '- - -';
 
@@ -204,15 +189,15 @@ if ($db->num_rows($result))
 
 		if ($cur_topic['moved_to'] != 0)
 		{
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<h3 id="forum-post"><a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a></h3> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="movedtext">'.$lang_forum['Moved'].'</span>';
 			$item_status .= ' imoved';
 		}
 		else if ($cur_topic['closed'] == '0')
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<h3 id="forum-post"><a href="viewtopic.php?id='.$cur_topic['id'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a></h3> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
 		else
 		{
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<h3 id="forum-post"><a href="viewtopic.php?id='.$cur_topic['id'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a></h3> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="closedtext">'.$lang_forum['Closed'].'</span>';
 			$item_status .= ' iclosed';
 		}
@@ -255,19 +240,15 @@ if ($db->num_rows($result))
 		}
 
 ?>
-				<tr class="<?php echo $item_status ?>">
-					<td class="tcl">
-						<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
-						<div class="tclcon">
-							<div>
-								<?php echo $subject."\n" ?>
-							</div>
+	    <?php echo $subject."\n" ?><br />
+        <span><?php echo forum_number_format($cur_topic['num_replies']) ?> replies</span>
+							<!--</div>
 						</div>
 					</td>
 					<td class="tc2"><?php echo ($cur_topic['moved_to'] == null) ? forum_number_format($cur_topic['num_replies']) : '-' ?></td>
 <?php if ($pun_config['o_topic_views'] == '1'): ?>					<td class="tc3"><?php echo ($cur_topic['moved_to'] == null) ? forum_number_format($cur_topic['num_views']) : '-' ?></td>
-<?php endif; ?>					<td class="tcr"><?php echo $last_post ?></td>
-				</tr>
+<?php endif; ?>					<td class="tcr">--><?php /*echo $last_post*/ ?><!--</td>
+				</tr>-->
 <?php
 
 	}
@@ -277,7 +258,7 @@ else
 	$colspan = ($pun_config['o_topic_views'] == '1') ? 4 : 3;
 
 ?>
-				<tr class="rowodd inone">
+				<!--<tr class="rowodd inone">
 					<td class="tcl" colspan="<?php echo $colspan ?>">
 						<div class="icon inone"><div class="nosize"><!-- --></div></div>
 						<div class="tclcon">
@@ -286,34 +267,21 @@ else
 							</div>
 						</div>
 					</td>
-				</tr>
+				</tr>-->
 <?php
 
 }
 
 ?>
-			</tbody>
-			</table>
+			<!--</tbody>
+			</table>-->
 		</div>
 	</div>
 </div>
+</div></div></div></div></div></div>
 
-<div class="linksb">
-	<div class="inbox crumbsplus">
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
-<?php echo $post_link ?>
-		</div>
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></a></li>
-		</ul>
-<?php echo (!empty($forum_actions) ? "\t\t".'<p class="subscribelink clearb">'.implode(' - ', $forum_actions).'</p>'."\n" : '') ?>
-		<div class="clearer"></div>
-	</div>
-</div>
 <?php
-
+echo $post_link;
 $forum_id = $id;
 $footer_style = 'viewforum';
 require PUN_ROOT.'footer.php';

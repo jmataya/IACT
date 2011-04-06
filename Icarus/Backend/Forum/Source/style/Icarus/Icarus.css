@@ -84,3 +84,33 @@ body {
     padding-left: 10px;
     padding-top: -10px;
 }
+
+#navigationContainer {
+    width: 991px;
+    height: 60px;
+    margin-left: 3px;
+    background: url('Icarus/menu-border-right.jpg') top right;
+    background-repeat: no-repeat;
+}
+
+#brdmenu {
+    height: 60px;
+    background: url('Icarus/menu-border-left.jpg') top left;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    padding-right: 22px;
+}
+
+#brdmenu ul {
+    height: 60px;
+    background: url('Icarus/menu-background.jpg') top left;
+    background-repeat: repeat-x;
+    list-style-type: none;
+}
+
+#brdmenu li {
+    float: left;
+    text-align: center;
+    margin-top: 5px;
+    margin-right: 160px;
+}

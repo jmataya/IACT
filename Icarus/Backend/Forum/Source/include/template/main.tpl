@@ -35,7 +35,9 @@
 	</div>
 </div>-->
 <div id="header"></div>
+<div id="navigationContainer">
 <pun_navlinks>
+</div>
 <pun_announcement>
 
 <div id="brdmain">

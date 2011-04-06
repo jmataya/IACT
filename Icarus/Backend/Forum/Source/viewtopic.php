@@ -165,11 +165,11 @@ if ($pun_config['o_quickpost'] == '1' &&
 
 if (!$pun_user['is_guest'] && $pun_config['o_topic_subscriptions'] == '1')
 {
-	if ($cur_topic['is_subscribed'])
+	/*if ($cur_topic['is_subscribed'])
 		// I apologize for the variable naming here. It's a mix of subscription and action I guess :-)
 		$subscraction = "\t\t".'<p class="subscribelink clearb"><span>'.$lang_topic['Is subscribed'].' - </span><a href="misc.php?action=unsubscribe&amp;tid='.$id.'">'.$lang_topic['Unsubscribe'].'</a></p>'."\n";
 	else
-		$subscraction = "\t\t".'<p class="subscribelink clearb"><a href="misc.php?action=subscribe&amp;tid='.$id.'">'.$lang_topic['Subscribe'].'</a></p>'."\n";
+		$subscraction = "\t\t".'<p class="subscribelink clearb"><a href="misc.php?action=subscribe&amp;tid='.$id.'">'.$lang_topic['Subscribe'].'</a></p>'."\n";*/
 }
 else
 	$subscraction = '';
@@ -187,14 +187,10 @@ require PUN_ROOT.'header.php';
 ?>
 <div class="linkst">
 	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></strong></a></li>
-		</ul>
+		<a href="index.php"><?php echo $lang_common['Index'] ?></a> | <a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a> | <a href="viewtopic.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></strong></a>
 		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
-<?php echo $post_link ?>
+			<p class="pagelink conl"><?php /* echo $paging_links */ ?></p>
+<?php /* echo $post_link*/ ?>
 		</div>
 		<div class="clearer"></div>
 	</div>
@@ -316,8 +312,8 @@ while ($cur_post = $db->fetch_assoc($result))
 	// Generation post action array (quote, edit, delete etc.)
 	if (!$is_admmod)
 	{
-		if (!$pun_user['is_guest'])
-			$post_actions[] = '<li class="postreport"><span><a href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a></span></li>';
+		/*if (!$pun_user['is_guest'])
+			$post_actions[] = '<li class="postreport"><span><a href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a></span></li>';*/
 
 		if ($cur_topic['closed'] == '0')
 		{
@@ -329,8 +325,8 @@ while ($cur_post = $db->fetch_assoc($result))
 					$post_actions[] = '<li class="postedit"><span><a href="edit.php?id='.$cur_post['id'].'">'.$lang_topic['Edit'].'</a></span></li>';
 			}
 
-			if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
-				$post_actions[] = '<li class="postquote"><span><a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang_topic['Quote'].'</a></span></li>';
+			/*if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
+				$post_actions[] = '<li class="postquote"><span><a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang_topic['Quote'].'</a></span></li>';*/
 		}
 	}
 	else
@@ -358,13 +354,14 @@ while ($cur_post = $db->fetch_assoc($result))
 
 ?>
 <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' blockpost1'; ?>">
-	<h2><span><span class="conr">#<?php echo ($start_from + $post_count) ?></span> <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span></h2>
+	<!--<h2><span><span class="conr">#<?php echo ($start_from + $post_count) ?></span> <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span></h2>-->
+    <h2><span><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></span></h2>
 	<div class="box">
 		<div class="inbox">
 			<div class="postbody">
 				<div class="postleft">
 					<dl>
-						<dt><strong><?php echo $username ?></strong></dt>
+						<dt><strong><?php /* echo $username */ ?></strong></dt>
 						<!--<dd class="usertitle"><strong><?php echo $user_title ?></strong></dd>-->
 <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
 <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
@@ -373,12 +370,13 @@ while ($cur_post = $db->fetch_assoc($result))
 				</div>
                      
                                         <div class="postright">
-					                        <h3><?php if ($cur_post['id'] != $cur_topic['first_post_id']) echo $lang_topic['Re'].' '; ?><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></h3>
+					                        <!--<h3><?php if ($cur_post['id'] != $cur_topic['first_post_id']) echo $lang_topic['Re'].' '; ?><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></h3>-->
 					                        <div class="postmsg">
 						                        <?php echo $cur_post['message']."\n" ?>
                                                 <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang_topic['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
 					                        </div>
-                                            <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>
+                                            
+                                            <!--<?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>-->
 				                        </div>
 			</div>
 		</div>
@@ -406,15 +404,15 @@ while ($cur_post = $db->fetch_assoc($result))
 <div class="postlinksb">
 	<div class="inbox crumbsplus">
 		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
-<?php echo $post_link ?>
+			<p class="pagelink conl"><?php /* echo $paging_links */ ?></p>
+<?php /* echo $post_link */ ?>
 		</div>
-		<ul class="crumbs">
+		<!--<ul class="crumbs">
 			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
 			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
 			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></strong></a></li>
-		</ul>
-<?php echo $subscraction ?>
+		</ul>-->
+<?php /*echo $subscraction*/ ?>
 		<div class="clearer"></div>
 	</div>
 </div>
@@ -426,6 +424,7 @@ if ($quickpost)
 {
 
 ?>
+<div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 <div id="quickpost" class="blockform">
 	<h2><span><?php echo $lang_topic['Quick post'] ?></span></h2>
 	<div class="box">
@@ -450,6 +449,7 @@ if ($quickpost)
 		</form>
 	</div>
 </div>
+</div></div></div></div></div></div>
 <?php
 
 }
