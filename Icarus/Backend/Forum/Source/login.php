@@ -6,6 +6,9 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 2 or higher
  */
 
+// Tell the header to use the login template.
+define('ICARUS_LOGIN', 1);
+
 if (isset($_GET['action']))
 	define('PUN_QUIET_VISIT', 1);
 
@@ -72,7 +75,8 @@ if (isset($_POST['form_sent']) && $action == 'in')
 
 	$expire = ($save_pass == '1') ? time() + 1209600 : time() + $pun_config['o_timeout_visit'];
 	pun_setcookie($cur_user['id'], $form_password_hash, $expire);
-
+    session_start();
+    $_SESSION['icarus_user'] = 'user1';
 	// Reset tracked topics
 	set_tracked_topics(null);
 
@@ -95,8 +99,9 @@ else if ($action == 'out')
 	if (isset($pun_user['logged']))
 		$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$pun_user['logged'].' WHERE id='.$pun_user['id']) or error('Unable to update user visit data', __FILE__, __LINE__, $db->error());
 
-	pun_setcookie(1, pun_hash(uniqid(rand(), true)), time() + 31536000);
-
+    pun_setcookie(1, pun_hash(uniqid(rand(), true)), time() + 31536000);
+    session_start();
+    session_destroy();
 	redirect('index.php', $lang_login['Logout redirect']);
 }
 
@@ -257,6 +262,7 @@ define('PUN_ACTIVE_PAGE', 'login');
 require PUN_ROOT.'header.php';
 
 ?>
+<div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 <div class="blockform">
 	<h2><span><?php echo $lang_common['Login'] ?></span></h2>
 	<div class="box">
@@ -283,6 +289,7 @@ require PUN_ROOT.'header.php';
 		</form>
 	</div>
 </div>
+</div></div></div></div></div></div>
 <?php
 
 require PUN_ROOT.'footer.php';

@@ -6,6 +6,9 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 2 or higher
  */
 
+// Start the session.
+session_start();
+
 // Make sure no one attempts to run this script "directly"
 if (!defined('PUN'))
 	exit;
@@ -19,11 +22,19 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 // Send the Content-type header in case the web server is setup to send something else
 header('Content-type: text/html; charset=utf-8');
 
+// Check to see if a user is logged in. If not, redirect to the login page.
+// This is change from the original design of the forum.
+if (!isset($_SESSION['icarus_user']) && !defined('ICARUS_LOGIN')) {
+    header("Location: login.php");
+}
+
 // Load the template
 if (defined('PUN_ADMIN_CONSOLE'))
 	$tpl_file = 'admin.tpl';
 else if (defined('PUN_HELP'))
 	$tpl_file = 'help.tpl';
+else if (defined('ICARUS_LOGIN'))
+    $tpl_file = 'login.tpl';
 else
 	$tpl_file = 'main.tpl';
 

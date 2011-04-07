@@ -109,10 +109,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="815.17721"
+     inkscape:zoom="1"
+     inkscape:cx="797.69119"
      inkscape:cy="915.45072"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="svg2985"
      inkscape:document-units="px"
      showgrid="false"
      showguides="true"
@@ -148,6 +148,10 @@
        orientation="1,0"
        position="308.29856,818.82965"
        id="guide5203" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="324,837"
+       id="guide3199" />
   </sodipodi:namedview>
   <metadata
      id="metadata2990">
@@ -166,7 +170,7 @@
      inkscape:label="Base"
      inkscape:groupmode="layer"
      sodipodi:insensitive="true"
-     style="display:none">
+     style="display:inline">
     <rect
        style="color:#000000;fill:#f2f2f2;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect2993"
@@ -1196,7 +1200,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Content Pane"
-     style="display:none">
+     style="display:inline">
     <path
        style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter4434);enable-background:accumulate"
        d="m 299.8125,0 0,1200 1001.25,0 0,-1200 -1001.25,0 z m 23,219.34375 951.5,0 c 8.2328,0 14.875,6.64224 14.875,14.875 l 0,20.28125 c 0,8.23276 -6.6422,14.84375 -14.875,14.84375 l -951.5,0 c -8.23276,0 -14.84375,-6.61099 -14.84375,-14.84375 l 0,-20.28125 c 0,-8.23276 6.61099,-14.875 14.84375,-14.875 z"
@@ -1519,4 +1523,56 @@
        x="-1304"
        y="-220" />
   </g>
+  <text
+     xml:space="preserve"
+     style="font-size:22.14562988px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Myriad Pro;-inkscape-font-specification:Myriad Pro"
+     x="327.15131"
+     y="251.33286"
+     id="text3195"
+     sodipodi:linespacing="125%"
+     transform="scale(0.99342394,1.0066196)"><tspan
+       sodipodi:role="line"
+       id="tspan3197"
+       x="327.15131"
+       y="251.33286"
+       style="font-size:28px">Home</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Myriad Pro;-inkscape-font-specification:Myriad Pro"
+     x="499.45953"
+     y="250.67383"
+     id="text3195-1"
+     sodipodi:linespacing="125%"
+     transform="scale(0.99342394,1.0066196)"><tspan
+       sodipodi:role="line"
+       id="tspan3197-7"
+       x="499.45953"
+       y="250.67383"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Myriad Pro;-inkscape-font-specification:Myriad Pro">Profile</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Myriad Pro;-inkscape-font-specification:Myriad Pro"
+     x="714.87671"
+     y="250.67383"
+     id="text3195-1-6"
+     sodipodi:linespacing="125%"
+     transform="scale(0.99342394,1.0066196)"><tspan
+       sodipodi:role="line"
+       id="tspan3197-7-9"
+       x="714.87671"
+       y="250.67383"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Myriad Pro;-inkscape-font-specification:Myriad Pro">Users</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Myriad Pro;-inkscape-font-specification:Myriad Pro"
+     x="930.29388"
+     y="250.67383"
+     id="text3195-1-6-3"
+     sodipodi:linespacing="125%"
+     transform="scale(0.99342394,1.0066196)"><tspan
+       sodipodi:role="line"
+       id="tspan3197-7-9-2"
+       x="930.29388"
+       y="250.67383"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Myriad Pro;-inkscape-font-specification:Myriad Pro">Logout</tspan></text>
 </svg>
