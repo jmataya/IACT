@@ -123,6 +123,7 @@ define('PUN_ACTIVE_PAGE', 'index');
 require PUN_ROOT.'header.php';
 
 ?>
+<div id="main">
 <div class="linkst">
 	<div class="inbox crumbsplus">
 		<a href="index.php"><?php echo $lang_common['Index'] ?></a> | <a href="viewforum.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></a>	
@@ -279,7 +280,7 @@ else
 	</div>
 </div>
 </div></div></div></div></div></div>
-
+</div>
 <?php
 echo $post_link;
 $forum_id = $id;

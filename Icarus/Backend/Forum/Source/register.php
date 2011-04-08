@@ -16,6 +16,10 @@ if (!$pun_user['is_guest'])
 	header('Location: index.php');
 	exit;
 }
+else
+{
+    define('ICARUS_REGISTER', 1);
+}
 
 // Load the register.php language file
 require PUN_ROOT.'lang/'.$pun_user['language'].'/register.php';
@@ -39,6 +43,12 @@ else if ($pun_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POS
 	require PUN_ROOT.'header.php';
 
 ?>
+<div id="post">
+    <div id="post-top">
+        <div id="post-bottom">
+            <div id="post-right">
+                <div id="post-left">
+                    <div id="post-content">
 <div id="rules" class="blockform">
 	<div class="hd"><h2><span><?php echo $lang_register['Forum rules'] ?></span></h2></div>
 	<div class="box">
@@ -54,6 +64,12 @@ else if ($pun_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POS
 			<p class="buttons"><input type="submit" name="agree" value="<?php echo $lang_register['Agree'] ?>" /> <input type="submit" name="cancel" value="<?php echo $lang_register['Cancel'] ?>" /></p>
 		</form>
 	</div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <?php
 
@@ -264,6 +280,12 @@ if (!empty($errors))
 
 }
 ?>
+<div id="post">
+    <div id="post-bottom">
+        <div id="post-top">
+            <div id="post-right">
+                <div id="post-left">
+                    <div id="post-content">
 <div id="regform" class="blockform">
 	<h2><span><?php echo $lang_register['Register'] ?></span></h2>
 	<div class="box">
@@ -406,6 +428,7 @@ if (!empty($errors))
 		</form>
 	</div>
 </div>
+</div></div></div></div></div></div>
 <?php
 
 require PUN_ROOT.'footer.php';

@@ -185,6 +185,7 @@ define('PUN_ACTIVE_PAGE', 'index');
 require PUN_ROOT.'header.php';
 
 ?>
+<div id="main">
 <div class="linkst">
 	<div class="inbox crumbsplus">
 		<a href="index.php"><?php echo $lang_common['Index'] ?></a> | <a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a> | <a href="viewtopic.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></strong></a>
@@ -449,7 +450,7 @@ if ($quickpost)
 		</form>
 	</div>
 </div>
-</div></div></div></div></div></div>
+</div></div></div></div></div></div></div>
 <?php
 
 }

@@ -41,6 +41,28 @@
 <pun_announcement>
 
 <div id="brdmain">
+<!-- TODO: Move this into the base page. -->
+<div id="leftColumn">
+    <div id="left-bottom">
+        <div id="left-top">
+            <div id="left-body">
+                <div id="left-content">
+                    <h2>Welcome to Icarus!</h2>
+                    <p>
+                        Welcome to the new IACT Icarus system. Icarus a community-powered forum
+                        that will help drive healthcare innovation in Pittsburgh.
+                    </p>
+                    <p>
+                        Icarus will continue to evolve over the coming weeks and months and it
+                        will all be made possible by your contributions and feedback. Please
+                        feel free to address all questions and comments to 
+                        <a href="mailto:jmataya@iactpgh.com">jmataya@iactpgh.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <pun_main>
 </div>
 

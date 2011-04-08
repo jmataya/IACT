@@ -24,7 +24,7 @@ header('Content-type: text/html; charset=utf-8');
 
 // Check to see if a user is logged in. If not, redirect to the login page.
 // This is change from the original design of the forum.
-if (!isset($_SESSION['icarus_user']) && !defined('ICARUS_LOGIN')) {
+if (!isset($_SESSION['icarus_user']) && !defined('ICARUS_LOGIN') && !defined('ICARUS_REGISTER')) {
     header("Location: login.php");
 }
 
@@ -34,6 +34,8 @@ if (defined('PUN_ADMIN_CONSOLE'))
 else if (defined('PUN_HELP'))
 	$tpl_file = 'help.tpl';
 else if (defined('ICARUS_LOGIN'))
+    $tpl_file = 'login.tpl';
+else if (defined('ICARUS_REGISTER'))
     $tpl_file = 'login.tpl';
 else
 	$tpl_file = 'main.tpl';

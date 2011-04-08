@@ -1,5 +1,5 @@
 body {
-    font-family: "Myriad Pro", Myriad, "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    //font-family: "Myriad Pro", Myriad, "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: url('Icarus/background.jpg');
 }
 
@@ -36,33 +36,39 @@ body {
     background: url('Icarus/header.png');
 }
 
+#main {
+    padding-left: 248px;
+}
+
 #post {
-    width: 1020px;
-    margin-left: -11px;
+    width: 750px;
+    margin-left: 0px;
     margin-top: 5px;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 #post-top {
-    width: 1020px;
-    margin-left -10px;
-    background: url('Icarus/post-top.png') top left;
+    width: 750px;
+    margin-left 0px;
+    background: url('Icarus/right-column-top.png') top left;
     background-repeat: repeat-x;
     margin-top: -5px;
-    padding-top: 15px;
+    padding-top: 5px;
     margin-left: 0px;
+    margin-bottom: -10px;
 }
 
 
 #post-right {
     background: url('Icarus/post-corner-right.png') top right;
     background-repeat: repeat-y;
-    margin-top: -8px;
-    margin-right: -3px;
+    margin-top: -7px;
+    margin-right: -2px;
+    margin-bottom: -8px;
 }
 
 #post-bottom {
-    background: url('Icarus/post-bottom.png') bottom left;
+    background: url('Icarus/right-column-bottom.png') bottom left;
     background-repeat: repeat-x;
     margin-bottom: -36px;
     padding-bottom: 10px;
@@ -73,13 +79,13 @@ body {
 #post-left {
     background: url('Icarus/post-corner-left.png') top left;
     background-repeat: repeat-y;
-    margin-left: 12px;
+    margin-left: 4px;
 }
 
 #post-content {
     background: #ffffff;
     margin-left: 14px;
-    margin-right: 37px;
+    margin-right: 18px;
     margin-bottom: 26px;
     padding-left: 10px;
     padding-top: -10px;
@@ -89,6 +95,7 @@ body {
     width: 991px;
     height: 60px;
     margin-left: 3px;
+    margin-top: -15px;
     background: url('Icarus/menu-border-right.jpg') top right;
     background-repeat: no-repeat;
 }
@@ -113,4 +120,35 @@ body {
     text-align: center;
     margin-top: 5px;
     margin-right: 160px;
+}
+
+#leftColumn {
+    width: 265px;
+    float: left;
+    margin-left: 5px;
+    margin-top: -5px;
+}
+
+#left-bottom {
+    background: url('Icarus/left-column-bottom.jpg') bottom left;
+    background-repeat: no-repeat;
+    padding-bottom: 20px;
+}
+
+#left-top {
+    padding-top: 20px;
+    background: url('Icarus/left-column-top.jpg') top left;
+    background-repeat: no-repeat;
+}
+
+#left-body {
+    padding-left: 20px;
+    background: url('Icarus/left-column-back.jpg') top left;
+    background-repeat: repeat-y;
+}
+
+#left-content {
+    margin-top: -10px;
+    background: transparent;
+    padding-right: 30px;
 }
