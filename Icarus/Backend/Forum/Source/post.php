@@ -507,15 +507,12 @@ require PUN_ROOT.'header.php';
 ?>
 <div class="linkst">
 	<div class="inbox">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $cur_posting['id'] ?>"><?php echo pun_htmlspecialchars($cur_posting['forum_name']) ?></a></li>
-<?php if (isset($cur_posting['subject'])): ?>			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_posting['subject']) ?></a></li>
-<?php endif; ?>			<li><span>»&#160;</span><strong><?php echo $action ?></strong></li>
-		</ul>
+	    <a href="index.php"><?php echo $lang_common['Index'] ?></a> | <a href="viewforum.php?id=<?php echo $cur_posting['id'] ?>"><?php echo pun_htmlspecialchars($cur_posting['forum_name']) ?></a><?php if (isset($cur_posting['subject'])): ?>	|		<a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_posting['subject']) ?></a>
+<?php endif; ?>			| <?php echo $action ?></strong>
 	</div>
 </div>
-
+<div id="main">
+<div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 <?php
 
 // If there are errors, we display them
@@ -599,7 +596,7 @@ if ($pun_user['is_guest'])
 if ($fid): ?>
 						<label class="required"><strong><?php echo $lang_common['Subject'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input class="longinput" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo pun_htmlspecialchars($subject); ?>" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
 <?php endif; ?>						<label class="required"><strong><?php echo $lang_common['Message'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-						<textarea name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea><br /></label>
+						<textarea name="req_message" rows="20" cols="80" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea><br /></label>
 						<ul class="bblinks">
 							<li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang_common['BBCode'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
 							<li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang_common['img tag'] ?></a> <?php echo ($pun_config['p_message_img_tag'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
@@ -707,7 +704,7 @@ if ($tid && $pun_config['o_topic_review'] != '0')
 				<div class="clearer"></div>
 			</div>
 		</div>
-	</div>
+    </div>
 <?php
 
 	}
@@ -717,5 +714,7 @@ if ($tid && $pun_config['o_topic_review'] != '0')
 <?php
 
 }
-
+?>
+</div></div></div></div></div></div></div>
+<?php
 require PUN_ROOT.'footer.php';

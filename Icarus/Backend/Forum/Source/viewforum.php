@@ -276,13 +276,14 @@ else
 ?>
 			<!--</tbody>
 			</table>-->
-		</div>
+        </div>
+<?php echo $post_link ?>
 	</div>
 </div>
 </div></div></div></div></div></div>
 </div>
 <?php
-echo $post_link;
+
 $forum_id = $id;
 $footer_style = 'viewforum';
 require PUN_ROOT.'footer.php';

@@ -126,6 +126,7 @@ if ($action == 'change_pass')
 	require PUN_ROOT.'header.php';
 
 ?>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 <div class="blockform">
 	<h2><span><?php echo $lang_profile['Change pass'] ?></span></h2>
 	<div class="box">
@@ -149,6 +150,7 @@ if ($action == 'change_pass')
 		</form>
 	</div>
 </div>
+</div></div></div></div></div></div></div>
 <?php
 
 	require PUN_ROOT.'footer.php';
@@ -269,6 +271,7 @@ else if ($action == 'change_email')
 	require PUN_ROOT.'header.php';
 
 ?>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 <div class="blockform">
 	<h2><span><?php echo $lang_profile['Change email'] ?></span></h2>
 	<div class="box">
@@ -287,7 +290,8 @@ else if ($action == 'change_email')
 			<p class="buttons"><input type="submit" name="new_email" value="<?php echo $lang_common['Submit'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
 		</form>
 	</div>
-</div>
+</div></div>
+</div></div></div></div></div></div>
 <?php
 
 	require PUN_ROOT.'footer.php';
@@ -395,6 +399,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 	require PUN_ROOT.'header.php';
 
 ?>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 <div class="blockform">
 	<h2><span><?php echo $lang_profile['Upload avatar'] ?></span></h2>
 	<div class="box">
@@ -413,7 +418,8 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 			<p class="buttons"><input type="submit" name="upload" value="<?php echo $lang_profile['Upload'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
 		</form>
 	</div>
-</div>
+</div></div>
+</div></div></div></div></div></div>
 <?php
 
 	require PUN_ROOT.'footer.php';
@@ -608,6 +614,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 	require PUN_ROOT.'header.php';
 
 ?>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 <div class="blockform">
 	<h2><span><?php echo $lang_profile['Confirm delete user'] ?></span></h2>
 	<div class="box">
@@ -627,7 +634,8 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 			<p class="buttons"><input type="submit" name="delete_user_comply" value="<?php echo $lang_profile['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
 		</form>
 	</div>
-</div>
+</div></div>
+</div></div></div></div></div></div>
 <?php
 
 	require PUN_ROOT.'footer.php';
@@ -918,7 +926,7 @@ else if (isset($_POST['form_sent']))
 }
 
 
-$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.jabber, u.icq, u.msn, u.aim, u.yahoo, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.jabber, u.icq, u.msn, u.aim, u.yahoo, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, g.g_id, g.g_user_title, g.g_moderator, i.picture_url, i.discipline, i.school, i.department, i.degree FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN icarus_user_profile AS i ON u.id = i.user_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message($lang_common['Bad request']);
 
@@ -1074,56 +1082,25 @@ if ($pun_user['id'] != $id &&																	// If we arent the user (i.e. edit
 	require PUN_ROOT.'header.php';
 
 ?>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 <div id="viewprofile" class="block">
-	<h2><span><?php echo $lang_common['Profile'] ?></span></h2>
-	<div class="box">
-		<div class="fakeform">
-			<div class="inform">
-				<fieldset>
-				<legend><?php echo $lang_profile['Section personal'] ?></legend>
-					<div class="infldset">
-						<dl>
-							<?php echo implode("\n\t\t\t\t\t\t\t", $user_personal)."\n" ?>
-						</dl>
-						<div class="clearer"></div>
-					</div>
-				</fieldset>
-			</div>
-<?php if (!empty($user_messaging)): ?>			<div class="inform">
-				<fieldset>
-				<legend><?php echo $lang_profile['Section messaging'] ?></legend>
-					<div class="infldset">
-						<dl>
-							<?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
-						</dl>
-						<div class="clearer"></div>
-					</div>
-				</fieldset>
-			</div>
-<?php endif; if (!empty($user_personality)): ?>			<div class="inform">
-				<fieldset>
-				<legend><?php echo $lang_profile['Section personality'] ?></legend>
-					<div class="infldset">
-						<dl>
-							<?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
-						</dl>
-						<div class="clearer"></div>
-					</div>
-				</fieldset>
-			</div>
-<?php endif; ?>			<div class="inform">
-				<fieldset>
-				<legend><?php echo $lang_profile['User activity'] ?></legend>
-					<div class="infldset">
-						<dl>
-							<?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
-						</dl>
-						<div class="clearer"></div>
-					</div>
-				</fieldset>
-			</div>
-		</div>
-	</div>
+    <img id="profile-pic" src="<?php echo $user['picture_url'] ?>"></img>
+    <div id="infoBox">
+        <h2><span><?php /*echo $lang_common['Profile']*/ echo $user['realname'] ?></span></h2>
+        <ul>
+        <?php
+            if ($user['discipline'] == 1)
+            {
+        ?>
+                <li><?php echo $user['school'] ?></li>
+                <li><?php echo $user['department'] ?></li>
+                <li><?php echo $user['degree'] ?></li>
+        <?php
+            }
+        ?>
+                <li><a href="mailto:<?php echo $user['email'] ?>"><?php echo $user['email'] ?></a></li>
+        </ul>
+    </div>
 </div>
 
 <?php
@@ -1181,6 +1158,7 @@ else
 		generate_profile_menu('essentials');
 
 ?>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 	<div class="blockform">
 		<h2><span><?php echo pun_htmlspecialchars($user['username']).' - '.$lang_profile['Section essentials'] ?></span></h2>
 		<div class="box">
@@ -1337,7 +1315,8 @@ else
 				<p class="buttons"><input type="submit" name="update" value="<?php echo $lang_common['Submit'] ?>" /> <?php echo $lang_profile['Instructions'] ?></p>
 			</form>
 		</div>
-	</div>
+    </div>
+</div></div></div></div></div></div></div>
 <?php
 
 	}
@@ -1353,6 +1332,7 @@ else
 		generate_profile_menu('personal');
 
 ?>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">n
 	<div class="blockform">
 		<h2><span><?php echo pun_htmlspecialchars($user['username']).' - '.$lang_profile['Section personal'] ?></span></h2>
 		<div class="box">
@@ -1372,7 +1352,8 @@ else
 				<p class="buttons"><input type="submit" name="update" value="<?php echo $lang_common['Submit'] ?>" /> <?php echo $lang_profile['Instructions'] ?></p>
 			</form>
 		</div>
-	</div>
+    </div>
+</div></div></div></div></div></div></div>
 <?php
 
 	}
@@ -1386,6 +1367,7 @@ else
 		generate_profile_menu('messaging');
 
 ?>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 	<div class="blockform">
 		<h2><span><?php echo pun_htmlspecialchars($user['username']).' - '.$lang_profile['Section messaging'] ?></span></h2>
 		<div class="box">
@@ -1436,6 +1418,8 @@ else
 
 
 ?>
+</div></div></div></div></div></div></div>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 	<div class="blockform">
 		<h2><span><?php echo pun_htmlspecialchars($user['username']).' - '.$lang_profile['Section personality'] ?></span></h2>
 		<div class="box">
@@ -1485,6 +1469,8 @@ else
 		generate_profile_menu('display');
 
 ?>
+</div></div></div></div></div></div></div>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 	<div class="blockform">
 		<h2><span><?php echo pun_htmlspecialchars($user['username']).' - '.$lang_profile['Section display'] ?></span></h2>
 		<div class="box">
@@ -1572,6 +1558,8 @@ else
 		generate_profile_menu('privacy');
 
 ?>
+</div></div></div></div></div></div></div>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 	<div class="blockform">
 		<h2><span><?php echo pun_htmlspecialchars($user['username']).' - '.$lang_profile['Section privacy'] ?></span></h2>
 		<div class="box">
@@ -1621,6 +1609,8 @@ else
 		generate_profile_menu('admin');
 
 ?>
+</div></div></div></div></div></div></div>
+<div id="main"><div id="post"><div id="post-top"><div id="post-bottom"><div id="post-right"><div id="post-left"><div id="post-content">
 	<div class="blockform">
 		<h2><span><?php echo pun_htmlspecialchars($user['username']).' - '.$lang_profile['Section admin'] ?></span></h2>
 		<div class="box">
@@ -1743,6 +1733,7 @@ else
 ?>
 	<div class="clearer"></div>
 </div>
+</div></div></div></div></div></div></div>
 <?php
 
 	require PUN_ROOT.'footer.php';

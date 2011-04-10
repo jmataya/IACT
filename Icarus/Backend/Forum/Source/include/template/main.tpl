@@ -36,7 +36,9 @@
 </div>-->
 <div id="header"></div>
 <div id="navigationContainer">
+<div id="navigationBar">
 <pun_navlinks>
+</div>
 </div>
 <pun_announcement>
 

@@ -1,5 +1,6 @@
 body {
     //font-family: "Myriad Pro", Myriad, "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Cambria,Georgia,Myriad Pro,Arial,Helvetica;font-size:100%;
     background: url('Icarus/background.jpg');
 }
 
@@ -26,6 +27,7 @@ body {
     background-repeat: repeat-x;
     border-left: 2px solid #ffffff;
     border-right: 2px solid #ffffff;
+    min-height: 800px;
 }
 
 #header {
@@ -88,7 +90,8 @@ body {
     margin-right: 18px;
     margin-bottom: 26px;
     padding-left: 10px;
-    padding-top: -10px;
+    padding-top: -31px;
+    margin-top: 21px;
 }
 
 #navigationContainer {
@@ -100,7 +103,7 @@ body {
     background-repeat: no-repeat;
 }
 
-#brdmenu {
+#navigationBar {
     height: 60px;
     background: url('Icarus/menu-border-left.jpg') top left;
     background-repeat: no-repeat;
@@ -108,18 +111,33 @@ body {
     padding-right: 22px;
 }
 
-#brdmenu ul {
+#brdmenu {
     height: 60px;
     background: url('Icarus/menu-background.jpg') top left;
     background-repeat: repeat-x;
+}
+
+#brdmenu ul {
     list-style-type: none;
+    background: transparent;
+    margin-left: -35px;
 }
 
 #brdmenu li {
     float: left;
     text-align: center;
     margin-top: 5px;
-    margin-right: 160px;
+    margin-right: 1px;
+}
+
+#brdmenu a {
+    display: inline-block;
+    width: 187px;
+    height: 38px;
+    padding-top: 7px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #000000;
 }
 
 #leftColumn {
@@ -151,4 +169,15 @@ body {
     margin-top: -10px;
     background: transparent;
     padding-right: 30px;
+}
+
+#infoBox
+{
+    margin-top: -20px;
+    float:right;
+    width: 550px;
+}
+
+#infoBox h2 {
+    font-size: 28px;
 }
