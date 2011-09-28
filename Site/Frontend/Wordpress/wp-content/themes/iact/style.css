@@ -4,8 +4,8 @@ html {
 
 body {
     font: normal 12px "Arial", "Helvetica";
-	color: #333333;
-    background: url(images/iact/whole-background.png) repeat-x top left;
+	color: #333333; 
+    background: #ffffff;
 }
 
 #header {
@@ -32,14 +32,15 @@ h2 {
 }
 
 #main {
-    width: 800px;
+    width: 1024px;
     height: 600px;
     margin: 0px auto;
-    background: url(images/iact/page-background.png) repeat-x top left;
+    /*background: url(images/iact/page-background.png) repeat-x top left;*/
+    background: #ffffff;
 }
 
 #viewport {
-    width: 790px;
+    width: 1024px;
     height: 600px;
     float: left;
     background: #FFFFFF;
@@ -47,7 +48,7 @@ h2 {
 }
 
 #content {
-    width: 470px;
+    width: 704px;
     height: 600px;
     float: left;
     padding-left: 10px;
